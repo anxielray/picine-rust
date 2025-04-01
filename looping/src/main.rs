@@ -9,8 +9,7 @@ fn main() {
 
     while !correct {
         attempts += 1;
-        println!("\n[RIDDLE]: {}", riddle);
-        print!("Your answer: ");
+        println!("{}", riddle);
         io::stdout().flush().expect("Failed to flush stdout");
 
         let mut answer = String::new();
@@ -21,10 +20,8 @@ fn main() {
         let answer = answer.trim().to_lowercase();
 
         if answer == correct_answer.to_lowercase() {
-            println!("Correct! It only took you {} attempts. Great!! You are awesome!", attempts);
+            println!("Number of trials: {}", attempts);
             correct = true;
-        } else {
-            println!("Incorrect. Try again.");
         }
     }
 }
