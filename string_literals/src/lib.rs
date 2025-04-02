@@ -14,7 +14,7 @@ pub fn split_at(v: &str, index: usize) -> (&str, &str) {
     v.split_at(index)
 }
 
-pub fn find(v: &str, pat: char) -> bool {
-    v.find(pat).unwrap_or(v.len());
+pub fn find(v: &str, pat: char) -> usize {
+    v.find(pat).unwrap_or(v.len())
 }
 
