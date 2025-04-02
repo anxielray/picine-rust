@@ -1,6 +1,21 @@
 pub fn first_subword(mut s: String) -> String{
-    if let Some(pos) = s.find(|c: char| c == '_'|| c.is_uppercase()) {
-        s.truncate(pos);
+    let mut result = String::new();
+    let mut is_first = true;
+    for c in s.chars() {
+        if is_first {
+            if c.is_alphanumeric() {
+                result.push(c);
+                is_first = false;
+            }
+        }else {
+            if c == '_' || c == '+'{
+                continue;
+            }else if c.is_alphanumeric() {
+                result.push(c);
+            }else {
+                break;
+            }
+        }
     }
-    s
+    result
 }
