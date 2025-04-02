@@ -1,7 +1,7 @@
 pub fn delete_and_backspace(s: &mut String) {
     let mut result = String::new();
     for c in s.chars() {
-        if c == '-'|| c == '+' {
+        if c == '-' || c == '+' {
             continue;
         }
         result.push(c);
@@ -9,7 +9,7 @@ pub fn delete_and_backspace(s: &mut String) {
     *s = result;
 }
 
-pub fn do_opreations(v: &mut [String]){
+pub fn do_operations(v: &mut [String]) {
     for eq in v.iter_mut() {
         if let Some(operator_pos) = eq.find(|c| c == '+' || c == '-') {
             let (left, right) = eq.split_at(operator_pos);
