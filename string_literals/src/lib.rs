@@ -6,7 +6,7 @@ pub fn is_ascii(v: &str) -> bool {
     v.is_ascii()
 }
 
-pub fn contains(v: &str, pat: char) -> bool {
+pub fn contains(v: &str, pat: &str) -> bool {
     v.contains(pat)
 }
 
