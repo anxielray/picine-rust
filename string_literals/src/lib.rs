@@ -10,7 +10,7 @@ pub fn contains(v: &str, pat: char) -> bool {
     v.contains(pat)
 }
 
-pub fn split_at(v: &str) -> (&str, &str) {
+pub fn split_at(v: &str, index: usize) -> (&str, &str) {
     v.split_at(index)
 }
 
