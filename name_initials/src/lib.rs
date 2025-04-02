@@ -1,4 +1,4 @@
-pub fn initals(names: Vec<&str>) -> Vec<String> {
+pub fn initials(names: Vec<&str>) -> Vec<String> {
     names
         .iter()
         .map(|name| {
