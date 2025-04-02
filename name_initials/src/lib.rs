@@ -3,7 +3,7 @@ pub fn initals(names: Vec<&str>) -> Vec<String> {
         .iter()
         .map(|name| {
             name.split_whitespace()
-                .map(|word| format!("{}.", word.chars().nex().unwrap()))
+                .map(|word| format!("{}.", word.chars().next().unwrap()))
                 .collect::<Vec<String>>()
                 .join("")
         })
