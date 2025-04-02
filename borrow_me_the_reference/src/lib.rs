@@ -9,6 +9,7 @@ pub fn delete_and_backspace(s: &mut String) {
     *s = result;
 }
 
+
 pub fn do_operations(v: &mut [String]) {
     for eq in v.iter_mut() {
         if let Some(operator_pos) = eq.find(|c| c == '+' || c == '-') {
