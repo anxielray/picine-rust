@@ -8,7 +8,7 @@ pub fn first_subword(mut s: String) -> String{
                 is_first = false;
             }
         }else {
-            if c == '_' || c == '+'{
+            if c == '-' || c == '+'{
                 continue;
             }else if c.is_alphanumeric() {
                 result.push(c);
