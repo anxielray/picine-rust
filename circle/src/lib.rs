@@ -2,7 +2,6 @@
 pub struct Point(pub f64, pub f64);
 
 impl Point {
-    // Method to calculate distance between two points
     pub fn distance(self, other: Point) -> f64 {
         let dx = self.0 - other.0;
         let dy = self.1 - other.1;
