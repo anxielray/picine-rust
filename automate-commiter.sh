@@ -14,7 +14,9 @@ COMMIT_MESSAGE=$2
 git add "$FILE_NAME"
 
 # Create the commit message
-COMMIT_MSG="[fibonacci2]: {Add commit to the piscine rust repository. $COMMIT_MESSAGE}"
+COMMIT_MSG="[Momeory]: {Add commit to the piscine rust repository. $COMMIT_MESSAGE}"
 
 # Commit with the formatted message
 git commit -m "$COMMIT_MSG"
+
+git push
