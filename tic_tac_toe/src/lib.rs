@@ -1,7 +1,7 @@
 pub fn tic_tac_toe(table: [[char;3];3]) -> String {
-    if horizontal('O', table) || vertical('O', table) || diagonal('O', table) {
+    if horizontal('O', table) || vertical('O', table) || diagonals('O', table) {
         return "Player O won".to_string();
-    }else if horizontal('X', table) || vertical('X', table) || diagonal('X', table) {
+    }else if horizontal('X', table) || vertical('X', table) || diagonals('X', table) {
         return "Player X won".to_string();
     }else {
         for row in table.iter() {
@@ -34,7 +34,7 @@ pub fn vertical(player: char, table: [[char; 3]; 3]) -> bool {
 }
 
 
-pub fn diagonal(player: char, table: [[char;3];3]) -> bool {
+pub fn diagonals(player: char, table: [[char;3];3]) -> bool {
     if table[0][0] == player && table[1][1] == player && table[2][2] == player {
         return true;
     }
