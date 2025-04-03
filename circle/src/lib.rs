@@ -1,7 +1,7 @@
 #[derive(Debug, Clone, Copy)]
 pub struct Point {
-    x: f64,
-    y: f64,
+    pub x: f64,
+    pub y: f64,
 }
 
 impl Point {
@@ -16,8 +16,8 @@ impl Point {
 
 #[derive(Debug, Clone, Copy)]
 pub struct Circle {
-    center: Point,
-    radius: f64,
+    pub center: Point,
+    pub radius: f64,
 }
 
 impl Circle {
