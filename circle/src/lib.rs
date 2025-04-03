@@ -9,15 +9,15 @@ impl Point {
         Point { x, y }
     }
 
-    pub fn distance(&self, other: &Point) -> f64 {
+    pub fn distance(&self, other: Point) -> f64 {
         ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).sqrt()
     }
 }
 
 #[derive(Debug, Clone, Copy)]
 pub struct Circle {
-    center: Point,
-    radius: f64,
+    pub center: Point,
+    pub radius: f64,
 }
 
 impl Circle {
@@ -36,8 +36,8 @@ impl Circle {
         std::f64::consts::PI * self.radius.powi(2)
     }
 
-    pub fn intersect(&self, other: &Circle) -> bool {
-        let distance_between_centers = self.center.distance(&other.center);
+    pub fn intersect(&self, other: Circle) -> bool {
+        let distance_between_centers = self.center.distance(other.center);
         distance_between_centers < (self.radius + other.radius)
     }
 }
