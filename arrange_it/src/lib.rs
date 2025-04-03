@@ -12,7 +12,7 @@ pub fn arrange_phrase(phrase: &str) -> String {
     remove_numbers(words.join(" "))
 }
 
-fn remove_numbers(input: String) -> String {
+pub fn remove_numbers(input: String) -> String {
     input.chars()
         .filter(|c| !c.is_digit(10))
         .collect()
