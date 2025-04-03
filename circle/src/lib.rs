@@ -1,16 +1,12 @@
 #[derive(Debug, Clone, Copy)]
-pub struct Point {
-    x: f64,
-    y: f64,
-}
+pub struct Point(pub f64, pub f64);
 
 impl Point {
-    pub fn new(x: f64, y: f64) -> Self {
-        Point { x, y }
-    }
-
-    pub fn distance(&self, other: Point) -> f64 {
-        ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).sqrt()
+    // Method to calculate distance between two points
+    pub fn distance(self, other: Point) -> f64 {
+        let dx = self.0 - other.0;
+        let dy = self.1 - other.1;
+        (dx * dx + dy * dy).sqrt()
     }
 }
 
@@ -21,22 +17,22 @@ pub struct Circle {
 }
 
 impl Circle {
-    pub fn new(x: f64, y: f64, radius: f64) -> Self {
+    pub fn new(x: f64, y: f64, radius: f64) -> Circle {
         Circle {
-            center: Point::new(x, y),
+            center: Point(x, y),
             radius,
         }
     }
 
-    pub fn diameter(&self) -> f64 {
+    pub fn diameter(self) -> f64 {
         2.0 * self.radius
     }
 
-    pub fn area(&self) -> f64 {
-        std::f64::consts::PI * self.radius.powi(2)
+    pub fn area(self) -> f64 {
+        std::f64::consts::PI * self.radius * self.radius
     }
 
-    pub fn intersect(&self, other: Circle) -> bool {
+    pub fn intersect(self, other: Circle) -> bool {
         let distance_between_centers = self.center.distance(other.center);
         distance_between_centers < (self.radius + other.radius)
     }
