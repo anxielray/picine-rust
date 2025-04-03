@@ -3,10 +3,17 @@ pub fn arrange_phrase(phrase: &str) -> String {
     
     words.sort_by_key(|word| {
         word.chars()
-            .filter_map(|c| c.to_digit(10))
-            .next()
-            .unwrap_or(0)
+        .find(|c| c.is_digit(10))
+        .unwrap_or('0')
+        .to_digit(10)
+        .unwrap_or(0)
     });
-    
-    words.join(" ")
+
+    remove_numbers(words.join(" "))
+}
+
+fn remove_numbers(input: String) -> String {
+    input.chars()
+        .filter(|c| !c.is_digit(10))
+        .collect()
 }
