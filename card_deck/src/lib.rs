@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 
 pub struct SimpleRng {
     state: u64,
@@ -23,7 +23,7 @@ impl SimpleRng {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Suit {
     Heart,
     Diamond,
@@ -49,7 +49,7 @@ impl Suit {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Rank {
     Ace,
     Number(u8),
@@ -77,7 +77,7 @@ impl Rank {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
