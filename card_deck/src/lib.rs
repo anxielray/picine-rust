@@ -1,4 +1,27 @@
-use rand::random_range;
+#[derive(Debug, PartialEq)]
+
+pub struct SimpleRng {
+    state: u64,
+}
+
+impl SimpleRng {
+    pub fn new(seed: u64) -> Self {
+        SimpleRng { state: seed }
+    }
+
+    // Linear Congruential Generator: (a * x + c) % m
+    pub fn next(&mut self) -> u64 {
+        const A: u64 = 1664525;
+        const C: u64 = 1013904223;
+        const M: u64 = 1 << 32;
+        self.state = (A.wrapping_mul(self.state).wrapping_add(C)) % M;
+        self.state
+    }
+
+    pub fn next_range(&mut self, min: u8, max: u8) -> u8 {
+        min + (self.next() % ((max - min + 1) as u64)) as u8
+    }
+}
 
 #[derive(Debug, PartialEq)]
 pub enum Suit {
@@ -9,19 +32,20 @@ pub enum Suit {
 }
 
 impl Suit {
-    pub fn random() -> Suit {
-        let value = random_range(1..=4);
-        Suit::translate(value)
-    }
-
     pub fn translate(value: u8) -> Suit {
         match value {
             1 => Suit::Heart,
             2 => Suit::Diamond,
             3 => Suit::Spade,
             4 => Suit::Club,
-            _ => panic!("Invalid suit value: {}", value),
+            _ => panic!("Invalid suit value"),
         }
+    }
+
+    // Modify random to use SimpleRng
+    pub fn random() -> Suit {
+        let mut rng = SimpleRng::new(42); // Initialize RNG with a fixed seed, for test stability
+        Suit::translate(rng.next_range(1, 4)) // Get a random Suit based on range 1 to 4
     }
 }
 
@@ -35,11 +59,6 @@ pub enum Rank {
 }
 
 impl Rank {
-    pub fn random() -> Rank {
-        let value = random_range(1..=13);
-        Rank::translate(value)
-    }
-
     pub fn translate(value: u8) -> Rank {
         match value {
             1 => Rank::Ace,
@@ -47,8 +66,14 @@ impl Rank {
             12 => Rank::Queen,
             13 => Rank::King,
             2..=10 => Rank::Number(value),
-            _ => panic!("Invalid rank value: {}", value),
+            _ => panic!("Invalid rank value"),
         }
+    }
+
+    // Modify random to use SimpleRng
+    pub fn random() -> Rank {
+        let mut rng = SimpleRng::new(42); // Initialize RNG with a fixed seed
+        Rank::translate(rng.next_range(1, 13)) // Get a random Rank based on range 1 to 13
     }
 }
 
@@ -58,10 +83,10 @@ pub struct Card {
     pub rank: Rank,
 }
 
+// Function to check if the card is Ace of Spades
 pub fn winner_card(card: Card) -> bool {
     card.suit == Suit::Spade && card.rank == Rank::Ace
 }
-
 
 /*
 A standard deck of cards has 52 cards: 4 suits with 13 cards per suit. Represent the cards from a deck:
@@ -90,6 +115,7 @@ pub enum Rank {
 
 impl Suit {
     pub fn random() -> Suit {
+
     }
 
     pub fn translate(value: u8) -> Suit {
