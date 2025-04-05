@@ -6,12 +6,20 @@ pub fn capitalize_first(input: &str) -> String {
     }
 }
 
+use regex::Regex;
+
 pub fn title_case(input: &str) -> String {
-    input
-        .split_whitespace()
-        .map(|word| capitalize_first(word))
-        .collect::<Vec<String>>()
-        .join(" ")
+    let re = Regex::new(r"(\s+)").unwrap();
+    re.split(input)
+        .map(|part| {
+            if part.trim().is_empty() {
+                part.to_string()
+            } else {
+                capitalize_first(part)
+            }
+        })
+        .collect::<Vec<_>>()
+        .join("")
 }
 
 pub fn change_case(input: &str) -> String {
