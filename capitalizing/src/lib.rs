@@ -1,35 +1,42 @@
 pub fn capitalize_first(input: &str) -> String {
-    let mut chars = input.chars();
-    match chars.next() {
-        Some(first) => first.to_uppercase().collect::<String>() + chars.as_str(),
-        None => String::new(),
+    if let Some(first) = input.chars().next() {
+        let c = first.to_ascii_uppercase().to_string();
+        let r = input
+            .chars()
+            .skip(1)
+            .collect::<String>()
+            .to_ascii_lowercase();
+        format!("{}{}", c, r)
+    } else {
+        String::new()
     }
 }
 
-use regex::Regex;
-
 pub fn title_case(input: &str) -> String {
-    let re = Regex::new(r"(\s+)").unwrap();
-    re.split(input)
-        .map(|part| {
-            if part.trim().is_empty() {
-                part.to_string()
-            } else {
-                capitalize_first(part)
-            }
-        })
-        .collect::<Vec<_>>()
-        .join("")
+    let mut result = String::new();
+    let mut new_word = true;
+    for c in input.chars() {
+        if c.is_whitespace() {
+            result.push(c);
+            new_word = true;
+        } else if new_word {
+            result.push(c.to_ascii_uppercase());
+            new_word = false;
+        } else {
+            result.push(c.to_ascii_lowercase());
+        }
+    }
+    result
 }
 
 pub fn change_case(input: &str) -> String {
     input
         .chars()
         .map(|c| {
-            if c.is_uppercase() {
-                c.to_lowercase().collect::<String>()
+            if c.is_ascii_uppercase() {
+                c.to_ascii_lowercase()
             } else {
-                c.to_uppercase().collect::<String>()
+                c.to_ascii_uppercase()
             }
         })
         .collect()
