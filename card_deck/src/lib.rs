@@ -1,6 +1,6 @@
 use rand::Rng;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Suit {
     Heart,
     Diamond,
@@ -25,7 +25,7 @@ impl Suit {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Rank {
     Ace,
     Number(u8),
@@ -52,7 +52,7 @@ impl Rank {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
