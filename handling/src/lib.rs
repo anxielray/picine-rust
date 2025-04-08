@@ -9,5 +9,9 @@ pub fn open_or_create<P: AsRef<Path>>(path: &P, content: &str) {
         .open(path)
         .expect("Failed to open or create file");
 
-    writeln!(file, "{}", content).expect("Failed to write to the file");
+    if content.ends_with('\n') {
+        write!(file, "{}", content).expect("Failed to write to file");
+    } else {
+        write!(file, "{}\n", content).expect("Failed to write to file");
+    }
 }
