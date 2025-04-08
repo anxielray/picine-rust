@@ -16,7 +16,7 @@ pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> Strin
             Err(e) => format!("Not found: {}", e),
         },
         Security::UnexpectedUrl => match server {
-            Ok(_) => panic!("Expected error but got Ok"),
+            Ok(url) => panic!("{}", url),
             Err(e) => panic!("{}", e),
         },
     }
