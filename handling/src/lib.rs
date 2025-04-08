@@ -1,5 +1,5 @@
-use std::fs::{self, OpenOptions};
-use std::io::{self, Write};
+use std::fs::OpenOptions;
+use std::io::Write;
 use std::path::Path;
 
 pub fn open_or_create<P: AsRef<Path>>(path: &P, content: &str) {
