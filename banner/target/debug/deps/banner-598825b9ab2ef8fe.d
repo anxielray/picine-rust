@@ -1,0 +1,5 @@
+/home/rogwel/projects/GT/R/banner/target/debug/deps/libbanner-598825b9ab2ef8fe.rmeta: src/lib.rs
+
+/home/rogwel/projects/GT/R/banner/target/debug/deps/banner-598825b9ab2ef8fe.d: src/lib.rs
+
+src/lib.rs:
