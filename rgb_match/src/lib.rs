@@ -7,7 +7,7 @@ pub struct Color {
 }
 
 impl Color {
-    pub fn swap(mut self, first: u8, second: u8) -> Option<Color> {
+    pub fn swap(self, first: u8, second: u8) -> Option<Color> {
         let mut components = [self.r, self.g, self.b, self.a];
 
         let mut first_index = None;
