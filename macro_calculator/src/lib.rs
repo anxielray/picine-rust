@@ -1,5 +1,5 @@
 #![allow(unused)]
-Food {
+pub struct Food {
     name: <name>,
     calories: [<value_in_kJ>, <value_in_kcal>],
     fats: <fats_in_g>,
