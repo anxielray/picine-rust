@@ -1,11 +1,11 @@
 #![allow(unused)]
-pub struct Food {
-    name: String,
-    calories: Vec<String>,
-    fats: f64,
-    carbs: f64,
-    proteins: f64,
-    nbr_of_portions: f64,
+Food {
+    name: <name>,
+    calories: [<value_in_kJ>, <value_in_kcal>],
+    fats: <fats_in_g>,
+    carbs: <carbs_in_g>,
+    proteins: <proteins_in_g>,
+    nbr_of_portions: <portions>
 }
 use json::JsonValue;
 
