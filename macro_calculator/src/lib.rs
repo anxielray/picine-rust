@@ -1,15 +1,16 @@
 #![allow(unused)]
 pub struct Food {
-    name: <name>,
-    calories: [<value_in_kJ>, <value_in_kcal>],
-    fats: <fats_in_g>,
-    carbs: <carbs_in_g>,
-    proteins: <proteins_in_g>,
-    nbr_of_portions: <portions>
+    pub name: String,
+    pub calories: [String; 2],
+    pub proteins: f64,
+    pub fats: f64,
+    pub carbs: f64,
+    pub nbr_of_portions: f64,
 }
+
 use json::JsonValue;
 
-fn calculate_macros(foods: Vec<Food>) -> JsonValue {
+pub fn calculate_macros(foods: Vec<Food>) -> JsonValue {
     let mut total_calories = 0.0;
     let mut total_carbs = 0.0;
     let mut total_proteins = 0.0;
