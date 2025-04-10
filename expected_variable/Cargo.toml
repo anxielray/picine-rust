@@ -5,3 +5,6 @@ edition = "2024"
 
 [dependencies]
 case = "1.0.0"
+[lib]
+name = "edit_distance"
+path = "src/lib.rs"
