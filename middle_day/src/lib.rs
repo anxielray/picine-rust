@@ -1,12 +1,20 @@
-use chrono::{Datelike, NaiveDate, Weekday};
+use chrono::{NaiveDate, Weekday as wd};
 
-pub fn middle_day(year: i32) -> Option<Weekday> {
-    let is_leap_year = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    if (is_leap_year && 366 % 2 == 0) || (!is_leap_year && 365 % 2 == 0) {
-        return None;
+pub fn middle_day(year: i32) -> Option<wd> {
+    let days_in_year = if NaiveDate::from_ymd_opt(year, 12, 31)
+        .unwrap()
+        .is_leap_year()
+    {
+        366
     } else {
-        let middle_day_number = if is_leap_year { 183 } else { 183 };
-        let middle_day = NaiveDate::from_ymd(year, 7, 2);
-        return Some(middle_day.weekday());
+        365
+    };
+
+    if days_in_year % 2 == 0 {
+        return None;
     }
+
+    let middle_day =
+        NaiveDate::from_ymd_opt(year, 1, 1).unwrap() + chrono::Duration::days(days_in_year / 2);
+    Some(middle_day.weekday())
 }
