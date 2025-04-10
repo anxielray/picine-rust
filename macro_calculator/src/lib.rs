@@ -16,7 +16,7 @@ fn calculate_macros(foods: Vec<Food>) -> JsonValue {
     let mut total_fats = 0.0;
 
     for food in foods {
-``        if let (Some(_kj), Some(kcal)) = (
+        if let (Some(_kj), Some(kcal)) = (
             food.calories.get(0).and_then(|s| s.parse::<f64>().ok()),
             food.calories.get(1).and_then(|s| s.parse::<f64>().ok()),
         ) {
