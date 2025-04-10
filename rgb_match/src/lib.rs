@@ -1,3 +1,4 @@
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Color {
     pub r: u8,
     pub g: u8,
@@ -6,26 +7,31 @@ pub struct Color {
 }
 
 impl Color {
-    pub fn swap(mut self, first: u8, second: u8) -> Color {
-        let r = self.r;
-        let g = self.g;
-        let b = self.b;
-        let a = self.a;
+    pub fn swap(mut self, first: u8, second: u8) -> Option<Color> {
+        let mut components = [self.r, self.g, self.b, self.a];
 
-        match first {
-            r => self.r = second,
-            g => self.g = second,
-            b => self.b = second,
-            a => self.a = second,
-            _ => panic!("Invalid color value: {}", first),
+        let mut first_index = None;
+        let mut second_index = None;
+
+        for i in 0..4 {
+            if components[i] == first {
+                first_index = Some(i);
+            }
+            if components[i] == second {
+                second_index = Some(i);
+            }
         }
-        match second {
-            r => self.r = first,
-            g => self.g = first,
-            b => self.b = first,
-            a => self.a = first,
-            _ => panic!("Invalid color value: {}", second),
+
+        if let (Some(first_idx), Some(second_idx)) = (first_index, second_index) {
+            components.swap(first_idx, second_idx);
+            return Some(Color {
+                r: components[0],
+                g: components[1],
+                b: components[2],
+                a: components[3],
+            });
         }
-        self
+
+        None
     }
 }
