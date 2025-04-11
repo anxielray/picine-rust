@@ -1,4 +1,4 @@
-fn scytale_cipher(message: String, size: u32) -> String {
+pub fn scytale_cipher(message: String, size: u32) -> String {
     let message = message.replace(" ", "");
     let size = size as usize;
     let mut rows = vec![String::new(); (message.len() + size - 1) / size];
