@@ -7,7 +7,7 @@ pub struct Color {
 }
 
 impl Color {
-    pub fn swap(self, first: u8, second: u8) -> Option<Color> {
+    pub fn swap(self, first: u8, second: u8) -> Color {
         let mut components = [self.r, self.g, self.b, self.a];
 
         let mut first_index = None;
@@ -24,14 +24,15 @@ impl Color {
 
         if let (Some(first_idx), Some(second_idx)) = (first_index, second_index) {
             components.swap(first_idx, second_idx);
-            return Some(Color {
+            return Color {
                 r: components[0],
                 g: components[1],
                 b: components[2],
                 a: components[3],
-            });
+            };
         }
 
-        None
+        // If swap is not possible, return the original color
+        self
     }
 }
